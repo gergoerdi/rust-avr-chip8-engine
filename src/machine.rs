@@ -27,7 +27,6 @@ impl Machine {
         }
     }
 
-    #[inline(never)]
     fn arith(op: Arith, x: Byte, y: Byte) -> (Byte, Option<bool>) {
         match op {
             Arith::Load => (y, None),
@@ -55,7 +54,6 @@ impl Machine {
         self.regs[0xf] = if flag { 1 } else { 0 };
     }
 
-    #[inline(never)]
     fn key_coords(key: Byte) -> (Byte, Byte) {
         match key & 0xf {
 
@@ -83,7 +81,6 @@ impl Machine {
         }
     }
 
-    #[inline(never)]
     fn coords_key(coords: (Byte, Byte)) -> Byte {
         match coords {
             (0, 0) => 0x1,
@@ -110,7 +107,6 @@ impl Machine {
         }
     }
 
-    #[inline(never)]
     fn wait_key<P>(&self, io: &P) -> (Byte, Byte) where P: Peripherals {
         let mut init_states = [0; 4];
         for (row, mut state) in init_states.iter_mut().enumerate() {
